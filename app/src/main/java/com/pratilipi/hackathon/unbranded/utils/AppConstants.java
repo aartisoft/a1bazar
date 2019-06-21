@@ -35,7 +35,7 @@ public final class AppConstants {
 
     public static final String PRODUCT_LIST = "PRODUCT_LIST";
     public static final String PRODUCT_STORE = "PRODUCT_STORE";
-    public static final String USER_STORE = "USER_STORE";
+    public static final String USER_STORE = "STORE";
 
     public static final String EXTRA_IMAGE_PATH= "EXTRA_IMAGE_PATH";
     public static final String EXTRA_VID_PATH= "EXTRA_VID_PATH";

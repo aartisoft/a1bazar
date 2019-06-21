@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -101,7 +102,7 @@ public class TrendingUserStoreAdapter extends RecyclerView.Adapter<TrendingUserS
         @BindView(R.id.product_sold_count)
         TextView productSoldCount;
         @BindView(R.id.root_layout)
-        RelativeLayout rootLayout;
+        LinearLayout rootLayout;
 
         public ViewHolder(final View itemView) {
             super(itemView);

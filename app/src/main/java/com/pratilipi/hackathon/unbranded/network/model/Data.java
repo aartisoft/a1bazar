@@ -35,7 +35,7 @@ public class Data implements Serializable, Parcelable {
     private List<Product> products = null;
     @SerializedName("user_products")
     @Expose
-    private List<UserProduct> userProducts = null;
+    private UserProduct userProducts = null;
     @SerializedName("users")
     @Expose
     private List<User> users = null;
@@ -49,7 +49,7 @@ public class Data implements Serializable, Parcelable {
     public Data() {
     }
 
-    public List<UserProduct> getUserProducts() {
+    public UserProduct getUserProduct() {
         return userProducts;
     }
 

@@ -106,7 +106,11 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             HeaderViewHolder headerHolder = (HeaderViewHolder) holder;
 
 //            headerHolder.txtTitleHeader.setText(mHeaderTitle);
-            setHdrPager(headerHolder);
+            try {
+                setHdrPager(headerHolder);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
         } else if (holder instanceof FooterViewHolder) {
@@ -179,49 +183,50 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
 
         } else if (holder instanceof StoreViewHolder) {
-            final Data data = dataList.get(position - 1);
+            try {
+                final Data data = dataList.get(position - 1);
 
 
-            StoreViewHolder genericViewHolder = (StoreViewHolder) holder;
+                StoreViewHolder genericViewHolder = (StoreViewHolder) holder;
 
-            switch (position) {
-                case 0:
-                    genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_1));
-                    break;
-                case 1:
-                    genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_2));
-                    break;
-                case 2:
-                    genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_3));
-                    break;
-                case 3:
-                    genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_4));
-                    break;
-                case 4:
-                    genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_5));
-                    break;
+                switch (position) {
+                    case 0:
+                        genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_1));
+                        break;
+                    case 1:
+                        genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_2));
+                        break;
+                    case 2:
+                        genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_3));
+                        break;
+                    case 3:
+                        genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_4));
+                        break;
+                    case 4:
+                        genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_5));
+                        break;
 
-                case 5:
-                    genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_1));
-                    break;
-                case 6:
-                    genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_2));
-                    break;
-                case 7:
-                    genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_3));
-                    break;
-                case 8:
-                    genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_4));
-                    break;
-                case 9:
-                    genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_5));
-                    break;
+                    case 5:
+                        genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_1));
+                        break;
+                    case 6:
+                        genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_2));
+                        break;
+                    case 7:
+                        genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_3));
+                        break;
+                    case 8:
+                        genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_4));
+                        break;
+                    case 9:
+                        genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_5));
+                        break;
 
-                default:
-                    genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_1));
-                    break;
+                    default:
+                        genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_1));
+                        break;
 
-            }
+                }
 /*
             if (position % 2 == 0)
                 genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_2));
@@ -229,7 +234,7 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
                 genericViewHolder.rlRoot.setBackground(mContext.getResources().getDrawable(R.drawable.gradient_3));
 */
 
-            genericViewHolder.itemTxtTitle.setText("Stores ");
+                genericViewHolder.itemTxtTitle.setText("Stores ");
 
 //            Random r = new Random();
 //            int min = 40;
@@ -237,9 +242,9 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 //            int random = r.nextInt((max - min) + 1) + min;
 //            genericViewHolder.tvCount.setText(String.valueOf(random));
 
-            genericViewHolder.homeChildRecView.setHasFixedSize(true);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
-            genericViewHolder.homeChildRecView.setLayoutManager(layoutManager);
+                genericViewHolder.homeChildRecView.setHasFixedSize(true);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+                genericViewHolder.homeChildRecView.setLayoutManager(layoutManager);
 
 /*
             ArrayList<String> itemsData = new ArrayList<>();
@@ -248,48 +253,52 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             }
 */
 
-            TrendingStoreAdapter adapter = new TrendingStoreAdapter((ArrayList<User>) data.getUsers(), mItemClickListener);
-            genericViewHolder.homeChildRecView.setAdapter(adapter);
+                TrendingStoreAdapter adapter = new TrendingStoreAdapter((ArrayList<User>) data.getUsers(), mItemClickListener);
+                genericViewHolder.homeChildRecView.setAdapter(adapter);
 
 /*
             genericViewHolder.itemTxtTitle.setText(model.getTitle());
             genericViewHolder.itemTxtMessage.setText(model.getMessage());
 */
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
         } else if (holder instanceof UserStoreViewHolder) {
-            final Data data = dataList.get(position - 1);
+            try {
+                final Data data = dataList.get(position - 1);
 
-            User user = data.getUserProducts().get(0).getUserList().get(0);
+                User user = data.getUserProduct().getUserList().get(0);
 
-            UserStoreViewHolder genericViewHolder = (UserStoreViewHolder) holder;
-
-
-            genericViewHolder.userName.setText(user.getName());
-
-            genericViewHolder.userFollowers.setText(String.format(Locale.getDefault(),
-                    "%d followers", user.getFollowers()));
+                UserStoreViewHolder genericViewHolder = (UserStoreViewHolder) holder;
 
 
-            RequestOptions options = new RequestOptions()
-                    .placeholder(R.drawable.iv_viewpagerdefault)
-                    .error(R.drawable.iv_viewpagerdefault)
-                    .priority(Priority.HIGH)
-//                .fitCenter()
-                    .error(R.drawable.iv_viewpagerdefault)
-                    .placeholder(R.drawable.iv_viewpagerdefault)
-                    .centerCrop()
-                    .transform(new RoundedCornersTransformation(8, 0,
-                            RoundedCornersTransformation.CornerType.ALL))
-                    .diskCacheStrategy(DiskCacheStrategy.ALL);
+                genericViewHolder.userName.setText(user.getName());
+
+                genericViewHolder.userFollowers.setText(String.format(Locale.getDefault(),
+                        "%d followers", user.getFollowers()));
 
 
-            if (user.getImageUrl() != null) {
-                Glide.with(holder.itemView.getContext())
-                        .load(user.getImageUrl())
-                        .apply(options)
-                        .into(genericViewHolder.userImage);
-            }
+                RequestOptions options = new RequestOptions()
+                        .placeholder(R.drawable.iv_viewpagerdefault)
+                        .error(R.drawable.iv_viewpagerdefault)
+                        .priority(Priority.HIGH)
+                        //                .fitCenter()
+                        .error(R.drawable.iv_viewpagerdefault)
+                        .placeholder(R.drawable.iv_viewpagerdefault)
+                        .circleCrop()
+                        .transform(new RoundedCornersTransformation(8, 0,
+                                RoundedCornersTransformation.CornerType.ALL))
+                        .diskCacheStrategy(DiskCacheStrategy.ALL);
+
+
+                if (user.getImageUrl() != null) {
+                    Glide.with(holder.itemView.getContext())
+                            .load(user.getImageUrl())
+                            .apply(options)
+                            .into(genericViewHolder.userImage);
+                }
 
 //            Random r = new Random();
 //            int min = 40;
@@ -297,9 +306,9 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 //            int random = r.nextInt((max - min) + 1) + min;
 //            genericViewHolder.tvCount.setText(String.valueOf(random));
 
-            genericViewHolder.homeChildRecView.setHasFixedSize(true);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
-            genericViewHolder.homeChildRecView.setLayoutManager(layoutManager);
+                genericViewHolder.homeChildRecView.setHasFixedSize(true);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+                genericViewHolder.homeChildRecView.setLayoutManager(layoutManager);
 
 /*
             ArrayList<String> itemsData = new ArrayList<>();
@@ -308,13 +317,17 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
             }
 */
 
-            TrendingUserStoreAdapter adapter = new TrendingUserStoreAdapter((ArrayList<Product>) data.getProducts(), mItemClickListener);
-            genericViewHolder.homeChildRecView.setAdapter(adapter);
+                TrendingUserStoreAdapter adapter = new TrendingUserStoreAdapter((ArrayList<Product>)
+                        data.getUserProduct().getProductList(), mItemClickListener);
+                genericViewHolder.homeChildRecView.setAdapter(adapter);
 
 /*
             genericViewHolder.itemTxtTitle.setText(model.getTitle());
             genericViewHolder.itemTxtMessage.setText(model.getMessage());
 */
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
         } else if (holder instanceof ViewHolder) {
@@ -360,16 +373,21 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
     private int getItemType(int position) {
-        switch (dataList.get(position).getType()) {
-            case PRODUCT_LIST:
-                return TYPE_ITEM;
-            case PRODUCT_STORE:
-                return TYPE_ITEM_STORE;
-            case USER_STORE:
-                return TYPE_USER_STORE;
-            default:
-                return TYPE_ITEM;
+        try {
+            switch (dataList.get(position).getType()) {
+                case PRODUCT_LIST:
+                    return TYPE_ITEM;
+                case PRODUCT_STORE:
+                    return TYPE_ITEM_STORE;
+                case USER_STORE:
+                    return TYPE_USER_STORE;
+                default:
+                    return TYPE_ITEM;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return TYPE_ITEM;
 
     }
 

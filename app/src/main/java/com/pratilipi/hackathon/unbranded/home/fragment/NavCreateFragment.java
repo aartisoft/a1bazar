@@ -144,7 +144,7 @@ public class NavCreateFragment extends Fragment implements VideoRendererEventLis
         });
         btnCamera.playAnimation();
 
-        initPlayer("");
+//        initPlayer("");
         return view;
 
     }
