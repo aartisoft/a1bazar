@@ -1,0 +1,131 @@
+<resources>
+    <string name="app_name">Unbranded</string>
+
+    <!--play store-->
+    <string name="app_google_play_store_link">"https://play.google.com/store/apps/details?id="</string>
+    <string name="app_market_link">"market://details?id="</string>
+
+    <!--App Message-->
+    <string name="api_retry_error">Please retry!</string>
+    <string name="api_default_error">Something wrong happened!</string>
+    <string name="some_error">Some Error Occurred!</string>
+    <string name="connection_error">Internet connection lost!</string>
+
+    <!--Toolbar menus-->
+    <string name="clear">Clear</string>
+    <string name="cut">Cut</string>
+    <string name="copy">Copy</string>
+    <string name="paste">Paste</string>
+    <string name="delete">Delete</string>
+    <string name="share">Share</string>
+
+    <!--Login-->
+    <string name="login_dummy">Login Dummy</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <string name="version">"version"</string>
+
+
+    <!--Login Validation-->
+    <string name="empty_email">Please provide a non empty email.</string>
+    <string name="invalid_email">Please provide a valid email.</string>
+    <string name="empty_password">Please provide a non empty password.</string>
+
+    <!--Drawer-->
+    <string name="open_drawer">Drawer Open</string>
+    <string name="close_drawer">Drawer Close</string>
+
+    <!--Drawer Menus-->
+    <string name="about">About Me</string>
+    <string name="logout">Logout</string>
+    <string name="feed">My Feed</string>
+
+    <string name="rate_us">Rate Us</string>
+    <string name="title_activity_content_list">Content List</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="Italic"><i>I</i></string>
+    <string name="BoldItalic"><b><i>BI</i></b></string>
+
+    <string name="register"><u><b><i>Copyright</i></b></u></string>
+    <string name="save">save</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="no_internet_content">Unable to connect to internet.Saving Data Locally.</string>
+    <string name="agree">OK</string>
+    <string name="disagree">CANCEL</string>
+    <string name="preview">preview</string>
+    <string name="no_internet_content_preview">No Internet Connection Detected. Please get online to preview.</string>
+    <string name="dialog_error_title">Sorry</string>
+    <string name="title_permissions">Permissions</string>
+    <string name="permission_not_accepted_storage">Sorry, you cannot add images without accepting this permission. We need it to get your editor working.</string>
+    <string name="oops">OOPS ...</string>
+    <string name="error_uploading">Some error occurs uploading data ! Please try again ...</string>
+    <string name="exit">Exit ?</string>
+    <string name="are_yot_sure">Are you sure ? want to exit the Editor ?</string>
+    <string name="naveen_dewangan">Naveen Dewangan</string>
+    <string name="dew_naveen_gmail_com">dew.naveen@gmail.com</string>
+    <string name="text_editor">Text Editor</string>
+    <string name="enter_heading">Enter Heading</string>
+    <string name="enter_content">Enter Content</string>
+
+    <string name="res_missing">Some Resources are missing from local storage. Please connect to internet to get all resources.</string>
+    <string name="refresh">Refresh</string>
+
+    <string name="about_me_hfr">
+
+        Android, Web, UI/UX Developer
+
+    </string>
+
+    <string name="profile_highlights">Profile Highlights</string>
+    <string name="title_activity_portfolio">My Portfolio</string>
+    <string name="my_portfolio">My Portfolio</string>
+    <string name="view_resume">View Resume</string>
+    <string name="contact_me">Contact Me</string>
+    <string name="success">Internet Available ! Showing Data from Server.</string>
+    <string name="no_internet_available">No Internet Connection. Showing Offline Data.</string>
+    <string name="upload_success">Data Uploaded Succesfully to Server.</string>
+    <string name="upload_success_local">Data updated offline.</string>
+    <string name="tab_1">Home</string>
+    <string name="tab_2">Library</string>
+    <string name="tab_3">Create</string>
+    <string name="tab_4">Follow</string>
+    <string name="tab_5">Profile</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+
+    <string name="lorem_ipsum">
+        Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque porro quisquam est, qui dolorem ipsum, quia dolor sit, amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt, ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit, qui in ea voluptate velit esse, quam nihil molestiae consequatur, vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+    </string>
+
+    <string name="lorem_ipsum2">
+    <![CDATA[
+<p dir="ltr">एक बार की बात है कि किसी <strong>तालाब</strong> में दो मेंढक रहते थे जिनमें से एक बहुत मोटा था और दूसरा पतला| सुबह सवेरे जब वे दोनों खाने की तलाश में निकले थे, अचानक वे दोनों एक दूध के बड़े बर्तन में गिर गये, जिसके किनारे बहुत चिकने थे और इसी वजह से वो उसमें से बाहर नहीं निकल पा रहे थे|</p>
+
+<h3 dir="ltr">दोनों काफ़ी देर तक दूध में तैरते रहे उन्हें लगा कि कोई इंसान आएगा और उनको वहाँ से निकाल देगा लेकिन घंटों तक वहाँ कोई नहीं आया अब तो उनकी जान निकली जा रही थी |</h3>
+
+<p dir="ltr"><img src="Temp_20180308_180005_.jpg"/></p>
+<p dir="ltr">मोटा मेढक जो अब पैर चलाते चलाते थक गया था, बोला कि मेरे से अब तैरा नहीं जा रहा और कोई बचाने भी नहीं आ रहा है| अब तो डूबने के अलावा और कोई चारा ही नहीं बचा है|</p>
+<p dir="ltr">पतले वाले ने उसे थोड़ा ढाँढस बंधाते हुए कहा कि मित्र कुछ देर और मेहनत से तैरते रहो ज़रूर कुछ देर बाद कोई ना कोई हल निकलेगा|</p>
+<p dir="ltr">इसी तरह फिर से कुछ घंटे बीत गये, मोटे मेंढक ने अब बिल्कुल उम्मीद छोड़ दी और बोला मित्र मैं अब पूरी तरह थक चुका हूँ और अब नहीं तैर सकता मैं तो डूबने जा रहा हूँ|</p>
+<p dir="ltr">सरे मेंढक ने उसे बहुत रोका लेकिन वह जिंदगी से हार चुका था और खुद ही तैरना छोड़ दिया और डूब कर मर गया|</p>
+<p dir="ltr">पतले मेंढक ने अभी तक हार नहीं मानी थी और वो पैर चलाता रहा कुछ देर बाद उसने महसूस कि ज्यादा देर दूध के मथे जाने से उसका मक्खन बन चुका है|</p>
+<p dir="ltr">और अब उसके पैरों के नीचे ठोस जगह हो चुकी थी| उसी का सहारा लेकर मेंढक ने छलाँग मारी और बाहर आ गया और अंत में उसकी जान बच गयी| अपने मित्र की मौत का उसे बड़ा दुख था, काश कुछ देर और संघर्ष करता तो वे दोनों बच सकते थे|</p>
+<h2 dir="ltr"><strong>तो मित्रों, परेशानियाँ हर इंसान की जिन्दगी में आती हैं और कई बार तो हमारे सामने इतनी कठिन परिस्थितियां होती हैं जिनसे बाहर निकलना असंभव सा प्रतीत होता है, लेकिन यकीन मानिये हालात चाहे कितने भी बुरे क्यों ना हों, अगर आप हिम्मत ना हारें तो कोई ना कोई हल जरुर निकल सकता है|</strong></h2>
+<p dir="ltr">इसलिए कभी उम्मीद ना छोड़ें और समस्या कितनी भी बड़ी हो कभी उससे हारना नहीं चाहिए, प्रयास करते रहिए एक ना एक बार आप ज़रूर सफल होंगे यही इस कहानी की शिक्षा है|</p>
+]]>
+
+    </string>
+    <string name="font">Font</string>
+    <string name="tts">TTS</string>
+    <string name="Rs">\u20B9</string>
+    <string name="play">Play</string>
+    <string name="stop">stop</string>
+    <!--
+    ♦
+-->
+</resources>
+

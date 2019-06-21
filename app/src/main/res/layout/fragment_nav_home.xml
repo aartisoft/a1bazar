@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:rtl_tabPadding="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--
+                <com.nshmura.recyclertablayout.RecyclerTabLayout
+                    android:id="@+id/recycler_tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    rtl_tabIndicatorColor="?attr/colorAccent"
+                    rtl_tabIndicatorHeight="2dp"
+                    rtl_tabBackground="?attr/selectableItemBackground"
+                    rtl_tabTextAppearance="@android:style/TextAppearance.Small"
+                    rtl_tabSelectedTextColor="@color/colorAccent"
+                    rtl_tabPaddingStart="12dp"
+                    rtl_tabPaddingTop="0dp"
+                    rtl_tabPaddingEnd="12dp"
+                    rtl_tabPaddingBottom="0dp"
+                    rtl_tabPadding="0dp"
+                    rtl_tabPadding:tabGravity="fill"
+                    rtl_tabPadding:tabMaxWidth="0dp"
+                    rtl_tabPadding:tabMode="fixed"
+                    />
+        -->
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tl_hometabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/transparent"
+            android:elevation="6dp"
+            android:fitsSystemWindows="true"
+            android:minHeight="50dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:tabTextAppearance="@style/TextStyle.Normal.Bold"
+            app:tabGravity="fill"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed"
+            app:tabTextColor="@color/colorPrimaryDark"
+            app:tabSelectedTextColor="@color/colorAccent"
+            />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </LinearLayout>
+
+</FrameLayout>
