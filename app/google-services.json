@@ -13,20 +13,6 @@
           "package_name": "com.autoinfini.chatapp"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "530374517165-psek2v9ft52qujj0h5jq1dpo7sul7duk.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.autoinfini.chatapp",
-            "certificate_hash": "16c943335d52d3844cf0c289599f7151e530cb89"
-          }
-        },
-        {
-          "client_id": "530374517165-4q8mir6k6cpkbif3lbiu7qfeq9j8gumh.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
       "api_key": [
         {
           "current_key": "AIzaSyDwvnbGcANWx9f9UjBxlyQAyyERYnDTrt0"
@@ -36,7 +22,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "530374517165-4q8mir6k6cpkbif3lbiu7qfeq9j8gumh.apps.googleusercontent.com",
+              "client_id": "530374517165-sqkvghs07cb8bgbv104c78r2ov14ki33.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -73,7 +59,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "530374517165-4q8mir6k6cpkbif3lbiu7qfeq9j8gumh.apps.googleusercontent.com",
+              "client_id": "530374517165-sqkvghs07cb8bgbv104c78r2ov14ki33.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

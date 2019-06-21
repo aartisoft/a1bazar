@@ -57,7 +57,7 @@ public class RecyclerViewHomeFragment extends BaseFragment {
     // @BindView(R.id.swipe_refresh_recycler_list)
     // SwipeRefreshLayout swipeRefreshRecyclerList;
 
-    private SwipeRefreshLayout swipeRefreshRecyclerList;
+//    private SwipeRefreshLayout swipeRefreshRecyclerList;
     private TrendingRecyclerViewAdapter mAdapter;
     private RecyclerViewScrollListener scrollListener;
 
@@ -125,22 +125,22 @@ public class RecyclerViewHomeFragment extends BaseFragment {
 
 //        setAdapter();
 
-        swipeRefreshRecyclerList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-
-                // Do your stuff on refresh
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        if (swipeRefreshRecyclerList.isRefreshing())
-                            swipeRefreshRecyclerList.setRefreshing(false);
-                    }
-                }, 5000);
-
-            }
-        });
+//        swipeRefreshRecyclerList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//
+//                // Do your stuff on refresh
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                        if (swipeRefreshRecyclerList.isRefreshing())
+//                            swipeRefreshRecyclerList.setRefreshing(false);
+//                    }
+//                }, 5000);
+//
+//            }
+//        });
 
 
     }
@@ -156,7 +156,7 @@ public class RecyclerViewHomeFragment extends BaseFragment {
     private void findViews(View view) {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        swipeRefreshRecyclerList = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_recycler_list);
+//        swipeRefreshRecyclerList = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_recycler_list);
     }
 
 

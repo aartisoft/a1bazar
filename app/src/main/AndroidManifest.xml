@@ -9,7 +9,6 @@
 
     <dist:module dist:instant="true" />
 
-
     <application
         android:name=".app.MyApplication"
         android:allowBackup="true"
@@ -18,11 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".LogInActivity"></activity>
         <activity
-            android:name=".detail.DetailActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity
-            android:name=".home.HomeActivity"
+            android:name=".SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +27,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".detail.DetailActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".home.HomeActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
@@ -38,7 +38,6 @@
         <activity
             android:name=".recording.RecordingActivity"
             android:screenOrientation="portrait" />
-
     </application>
 
 </manifest>

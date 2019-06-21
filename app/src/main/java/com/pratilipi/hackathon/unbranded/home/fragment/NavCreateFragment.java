@@ -590,7 +590,6 @@ public class NavCreateFragment extends Fragment implements VideoRendererEventLis
                             firebaseUri.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                 @Override
                                 public void onSuccess(Uri uri) {
-
                                     String url = uri.toString();
                                     Log.e("TAG:", "the url is: " + url);
 
