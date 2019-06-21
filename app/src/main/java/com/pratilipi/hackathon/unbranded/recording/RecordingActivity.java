@@ -99,13 +99,6 @@ public class RecordingActivity
         mProjectionManager = (MediaProjectionManager) getSystemService
                 (Context.MEDIA_PROJECTION_SERVICE);
 
-//        mToggleButton = (ToggleButton) findViewById(R.id.toggle);
-//        mToggleButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                onToggleScreenShare(v);
-//            }
-//        });
 
         RequestOptions options1 = new RequestOptions()
                 .placeholder(R.drawable.iv_viewpagerdefault)
@@ -145,41 +138,6 @@ public class RecordingActivity
 //        timer.setVisibility(View.VISIBLE);
         addAudio.setVisibility(View.GONE);
 
-        /*timer.addAnimatorListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationCancel(Animator animation) {
-                super.onAnimationCancel(animation);
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                timer.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-                super.onAnimationRepeat(animation);
-            }
-
-            @Override
-            public void onAnimationStart(Animator animation) {
-                super.onAnimationStart(animation);
-            }
-
-            @Override
-            public void onAnimationPause(Animator animation) {
-                super.onAnimationPause(animation);
-            }
-
-            @Override
-            public void onAnimationResume(Animator animation) {
-                super.onAnimationResume(animation);
-            }
-        });
-
-        timer.playAnimation();
-*/
         addAudio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

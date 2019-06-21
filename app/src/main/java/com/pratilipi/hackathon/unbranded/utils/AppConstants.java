@@ -37,9 +37,19 @@ public final class AppConstants {
     public static final String PRODUCT_STORE = "PRODUCT_STORE";
     public static final String USER_STORE = "STORE";
 
+    public static final String USER_ID = "User-Id";
+    public static final String URL = "url";
+
     public static final String EXTRA_IMAGE_PATH= "EXTRA_IMAGE_PATH";
     public static final String EXTRA_VID_PATH= "EXTRA_VID_PATH";
     public static final String EXTRA_PRODUCT = "EXTRA_PRODUCT";
+
+    public static final String PRODUCT_NAME = "name";
+    public static final String PRODUCT_ID = "id";
+    public static final String PRODUCT_DESCRIPTION = "description";
+    public static final String PRODUCT_VIDEO_URL = "videoUrl";
+    public static final String PRODUCT_PRICE = "price";
+
     private AppConstants() {
         // This utility class is not publicly instantiable
     }

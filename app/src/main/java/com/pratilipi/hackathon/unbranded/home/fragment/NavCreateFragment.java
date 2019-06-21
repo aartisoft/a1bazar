@@ -17,6 +17,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
@@ -31,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.androidnetworking.error.ANError;
 import com.google.android.exoplayer2.Format;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.decoder.DecoderCounters;
@@ -45,11 +47,17 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.pratilipi.hackathon.unbranded.R;
 import com.pratilipi.hackathon.unbranded.detail.DetailActivity;
+import com.pratilipi.hackathon.unbranded.network.ApiEndPoint;
 import com.pratilipi.hackathon.unbranded.network.model.Product;
+import com.pratilipi.hackathon.unbranded.network.model.Trending;
+import com.pratilipi.hackathon.unbranded.network.model.UserProduct;
 import com.pratilipi.hackathon.unbranded.recording.RecordingActivity;
+import com.pratilipi.hackathon.unbranded.rxjava.AppSchedulerProvider;
 import com.pratilipi.hackathon.unbranded.utils.AppConstants;
 import com.pratilipi.hackathon.unbranded.utils.DialogFactory;
 import com.pratilipi.hackathon.unbranded.utils.ScreenUtils;
+import com.rx2androidnetworking.Rx2ANRequest;
+import com.rx2androidnetworking.Rx2AndroidNetworking;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -59,11 +67,18 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -88,6 +103,22 @@ public class NavCreateFragment extends Fragment implements VideoRendererEventLis
     TextView addAudio;
     @BindView(R.id.play_layout)
     LinearLayout playLayout;
+
+    @BindView(R.id.product_upload_form)
+    LinearLayout productUploadFormLayout;
+
+    @BindView(R.id.product_upload_form_name)
+    TextInputEditText productName;
+
+    @BindView(R.id.product_upload_form_description)
+    TextInputEditText productDescription;
+
+    @BindView(R.id.product_upload_form_price)
+    TextInputEditText productPrice;
+
+    @BindView(R.id.upload_product)
+    TextView productUploadBtn;
+
     //Firebase
     FirebaseStorage storage;
     StorageReference storageReference;
@@ -96,6 +127,7 @@ public class NavCreateFragment extends Fragment implements VideoRendererEventLis
     private String imageUri;
     private PlayerView simpleExoPlayerView;
     private SimpleExoPlayer player;
+    private String productVideoUrl;
 
     public static NavCreateFragment newInstance(int index) {
         NavCreateFragment fragment = new NavCreateFragment();
@@ -144,16 +176,66 @@ public class NavCreateFragment extends Fragment implements VideoRendererEventLis
         });
         btnCamera.playAnimation();
 
+        productUploadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createProduct();
+            }
+        });
+
 //        initPlayer("");
         return view;
 
     }
 
+    private void createProduct() {
+        String name = productName.getText().toString();
+        String description = productDescription.getText().toString();
+        String price = productPrice.getText().toString();
+
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setTitle("Saving Product...");
+        progressDialog.show();
+
+        (new CompositeDisposable()).add(postProduct(name, description, price, productVideoUrl)
+                .subscribeOn(new AppSchedulerProvider().io())
+                .observeOn(new AppSchedulerProvider().ui())
+                .subscribe(new Consumer<UserProduct>() {
+                    @Override
+                    public void accept(UserProduct userProduct) throws Exception {
+                        progressDialog.dismiss();
+                        Intent intent = new Intent(getActivity(), DetailActivity.class);
+                        intent.putExtra(AppConstants.EXTRA_PRODUCT, (Serializable) userProduct.getProductList().get(0));
+                        intent.putExtra(AppConstants.URL,  productVideoUrl);
+                        startActivity(intent);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+//                    hideLoading();
+
+                        // handle the error here
+                        if (throwable instanceof ANError) {
+                            ANError anError = (ANError) throwable;
+                            Log.d("anError ", anError.toString());
+//                            handleApiError(anError);
+                        }
+                    }
+                }));
+    }
+
     private void startRecordingActivity() {
         Log.d(TAG, "startRecordingActivity: ");
-        Intent intent = new Intent(getContext(), RecordingActivity.class);
-        intent.putExtra(AppConstants.EXTRA_IMAGE_PATH, imageUri);
-        startActivityForResult(intent, AppConstants.REQUEST_CODE_RECORDER);
+
+        String getAccountsPermission = Manifest.permission.RECORD_AUDIO;
+        if (!hasPermission(getAccountsPermission)) {
+            requestPermissionsSafely(new String[]{getAccountsPermission}
+            );
+        } else {
+            Intent intent = new Intent(getContext(), RecordingActivity.class);
+            intent.putExtra(AppConstants.EXTRA_IMAGE_PATH, imageUri);
+            startActivityForResult(intent, AppConstants.REQUEST_CODE_RECORDER);
+        }
     }
 
     @Override
@@ -203,9 +285,11 @@ public class NavCreateFragment extends Fragment implements VideoRendererEventLis
             case AppConstants.REQUEST_CODE_RECORDER:
                 if (resultCode == RESULT_OK) {
                     String path = data.getStringExtra(AppConstants.EXTRA_VID_PATH);
+
                     Log.d(TAG, "onActivityResult: path" + path);
 //                    initPlayer(path);
                     uploadImage(path);
+
                 }
                 break;
 
@@ -301,6 +385,11 @@ public class NavCreateFragment extends Fragment implements VideoRendererEventLis
                 break;
         }
 
+    }
+
+    private void showProductForm(String url) {
+        productVideoUrl = url;
+        productUploadFormLayout.setVisibility(View.VISIBLE);
     }
 
     private void initPlayer(final String path) {
@@ -461,6 +550,25 @@ public class NavCreateFragment extends Fragment implements VideoRendererEventLis
         }
     }
 
+    private Observable<UserProduct> postProduct(String name, String description, String price, String productVideoUrl) {
+
+        Map<String, String> request = new HashMap<String, String>();
+        request.put(AppConstants.PRODUCT_NAME, name);
+        request.put(AppConstants.PRODUCT_DESCRIPTION, description);
+        request.put(AppConstants.PRODUCT_PRICE, price);
+        request.put(AppConstants.PRODUCT_VIDEO_URL, productVideoUrl);
+
+        Map<String, String> header = new HashMap<String, String>();
+        header.put(AppConstants.USER_ID, "4");
+
+        return Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_PRODUCT_CREATE)
+                .addHeaders(header)
+                .addUrlEncodeFormBodyParameter(request)
+                .build()
+                .getObjectObservable(UserProduct.class)
+                ;
+    }
+
     private void uploadImage(String filePath) {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
@@ -488,7 +596,9 @@ public class NavCreateFragment extends Fragment implements VideoRendererEventLis
 
                                     String ref = storageReference.getName();
                                     Log.e("TAG:", "the ref is: " + ref);
-                                    initPlayer(url);
+//                                    initPlayer(url);
+                                    showProductForm(url);
+                                    progressDialog.dismiss();
                                 }
                             });
 

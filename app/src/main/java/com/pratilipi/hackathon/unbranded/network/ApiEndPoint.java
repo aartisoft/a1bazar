@@ -6,7 +6,8 @@ package com.pratilipi.hackathon.unbranded.network;
 public final class ApiEndPoint {
 
     static String BASE_LOCAL = "http://192.168.43.6/naveen_resume/public/";
-    private static final String BASE_SERVER = "http://dewnaveen.info/";
+    private static final String BASE_SERVER = "http://192.168.0.156:8080";
+
 
     public static final String ENDPOINT_CONTENT_LIST = BASE_SERVER + "api/get/contentList";
 
@@ -22,7 +23,8 @@ public final class ApiEndPoint {
 
 //    public static final String ENDPOINT_TRENDING_HOME = "http://www.mocky.io/v2/5d0c844f3500005700b898be";
 //    public static final String ENDPOINT_TRENDING_HOME = "http://www.mocky.io/v2/5d0c9a0a3500003c00b8996c";
-    public static final String ENDPOINT_TRENDING_HOME = "http://192.168.0.67:8080/trending";
+    public static final String ENDPOINT_TRENDING_HOME = BASE_SERVER + "/trending";
+    public static final String ENDPOINT_PRODUCT_CREATE = BASE_SERVER + "/product";
 //    public static final String ENDPOINT_TRENDING_HOME = "http://www.mocky.io/v2/5d0cfd863500006500b89c15";
 //    public static final String ENDPOINT_TRENDING_HOME = "http://www.mocky.io/v2/5d0caa683500006700b899e3";
 //    public static final String ENDPOINT_TRENDING_HOME = "http://www.mocky.io/v2/5d0c9ffb3500003c00b899a3";

@@ -115,27 +115,17 @@ public class DetailActivity
 
 
         mProduct = (Product) getIntent().getExtras().getSerializable(AppConstants.EXTRA_PRODUCT);
+        Uri mp4VideoUri = null;
+
+        if (getIntent().getExtras().getString(AppConstants.URL) != null) {
+            mp4VideoUri = Uri.parse(getIntent().getExtras().getString(AppConstants.URL));
+        } else {
+            mp4VideoUri = Uri.parse(mProduct.getVideoUrl());
+        }
+
 
         if (mProduct == null)
             onBackPressed();
-
-//// I. ADJUST HERE:
-////CHOOSE CONTENT: LiveStream / SdCard
-//
-////LIVE STREAM SOURCE: * Livestream links may be out of date so find any m3u8 files online and replace:
-//
-////        Uri mp4VideoUri =Uri.parse("http://81.7.13.162/hls/ss1/index.m3u8"); //random 720p source
-////        Uri mp4VideoUri =Uri.parse("http://54.255.155.24:1935//Live/_definst_/amlst:sweetbcha1novD235L240P/playlist.m3u8"); //Radnom 540p indian channel
-//        Uri mp4VideoUri =Uri.parse("http://cbsnewshd-lh.akamaihd.net/i/CBSNHD_7@199302/index_700_av-p.m3u8"); //CNBC
-//        Uri mp4VideoUri = Uri.parse("http://live.field59.com/wwsb/ngrp:wwsb1_all/playlist.m3u8"); //ABC NEWS
-        Uri mp4VideoUri = Uri.parse(mProduct.getVideoUrl()); //ABC NEWS
-////        Uri mp4VideoUri =Uri.parse("FIND A WORKING LINK ABD PLUg INTO HERE"); //PLUG INTO HERE<------------------------------------------
-//
-//
-////VIDEO FROM SD CARD: (2 steps. set up file and path, then change videoSource to get the file)
-////        String urimp4 = "path/FileName.mp4"; //upload file to device and add path/name.mp4
-////        Uri mp4VideoUri = Uri.parse(Environment.getExternalStorageDirectory().getAbsolutePath()+urimp4);
-
 
         DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter(); //test
 
@@ -254,8 +244,6 @@ public class DetailActivity
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         mScreenDensity = metrics.densityDpi;
 
-//        DISPLAY_WIDTH = simpleExoPlayerView.getWidth();
-//        DISPLAY_HEIGHT = simpleExoPlayerView.getHeight();
         initRecorder();
         prepareRecorder();
 
