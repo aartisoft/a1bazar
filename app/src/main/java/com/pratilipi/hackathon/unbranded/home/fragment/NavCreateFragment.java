@@ -1,6 +1,7 @@
 package com.pratilipi.hackathon.unbranded.home.fragment;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -49,15 +50,14 @@ import com.pratilipi.hackathon.unbranded.R;
 import com.pratilipi.hackathon.unbranded.detail.DetailActivity;
 import com.pratilipi.hackathon.unbranded.network.ApiEndPoint;
 import com.pratilipi.hackathon.unbranded.network.model.Product;
-import com.pratilipi.hackathon.unbranded.network.model.Trending;
 import com.pratilipi.hackathon.unbranded.network.model.UserProduct;
 import com.pratilipi.hackathon.unbranded.recording.RecordingActivity;
 import com.pratilipi.hackathon.unbranded.rxjava.AppSchedulerProvider;
 import com.pratilipi.hackathon.unbranded.utils.AppConstants;
 import com.pratilipi.hackathon.unbranded.utils.DialogFactory;
 import com.pratilipi.hackathon.unbranded.utils.ScreenUtils;
-import com.rx2androidnetworking.Rx2ANRequest;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -77,8 +77,6 @@ import butterknife.Unbinder;
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
-import okhttp3.Request;
-import okhttp3.Response;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -188,6 +186,31 @@ public class NavCreateFragment extends Fragment implements VideoRendererEventLis
 
     }
 
+    @SuppressLint("CheckResult")
+    private void checkPermission(RxPermissions rxPermissions) {
+        try {
+            rxPermissions
+                    .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.RECORD_AUDIO)
+                    .subscribe(granted -> {
+                        try {
+                            if (granted) {
+                                // All requested permissions are granted
+                            } else {
+                                Toast.makeText(getContext(), "Permission Required", Toast.LENGTH_SHORT).show();
+                                checkPermission(rxPermissions);
+                                // At least one permission is denied
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     private void createProduct() {
         String name = productName.getText().toString();
         String description = productDescription.getText().toString();
@@ -206,7 +229,7 @@ public class NavCreateFragment extends Fragment implements VideoRendererEventLis
                         progressDialog.dismiss();
                         Intent intent = new Intent(getActivity(), DetailActivity.class);
                         intent.putExtra(AppConstants.EXTRA_PRODUCT, (Serializable) userProduct.getProductList().get(0));
-                        intent.putExtra(AppConstants.URL,  productVideoUrl);
+                        intent.putExtra(AppConstants.URL, productVideoUrl);
                         startActivity(intent);
                     }
                 }, new Consumer<Throwable>() {
@@ -655,6 +678,16 @@ public class NavCreateFragment extends Fragment implements VideoRendererEventLis
 
     @Override
     public void onVideoDisabled(DecoderCounters counters) {
+
+    }
+
+    public void onPageRefresh() {
+        try {
+            final RxPermissions rxPermissions = new RxPermissions(this);
+            checkPermission(rxPermissions);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }

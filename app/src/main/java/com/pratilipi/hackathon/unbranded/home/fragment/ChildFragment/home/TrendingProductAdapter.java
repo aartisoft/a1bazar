@@ -52,12 +52,10 @@ public class TrendingProductAdapter extends RecyclerView.Adapter<TrendingProduct
 //        holder.productRating.setText("(" + product.getRa() + ")");
 
         RequestOptions options = new RequestOptions()
-                .placeholder(R.drawable.iv_viewpagerdefault)
-                .error(R.drawable.iv_viewpagerdefault)
                 .priority(Priority.HIGH)
 //                .fitCenter()
-                .error(R.drawable.iv_viewpagerdefault)
-                .placeholder(R.drawable.iv_viewpagerdefault)
+                .error(R.drawable.loader)
+                .placeholder(R.drawable.loader)
                 .centerCrop()
                 .transform(new RoundedCornersTransformation(8, 0,
                         RoundedCornersTransformation.CornerType.ALL))

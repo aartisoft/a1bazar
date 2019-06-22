@@ -54,9 +54,9 @@ public class HomeFragment2 extends Fragment {
         unbinder = ButterKnife.bind(this, view);
 
 /*
-        HomePagerTabsAdapter myAdapter = new HomePagerTabsAdapter(getChildFragmentManager(), getActivity(), titles);
+        HomePagerTabsAdapter profileAdapter = new HomePagerTabsAdapter(getChildFragmentManager(), getActivity(), titles);
         vpHome.setOffscreenPageLimit(2);
-        vpHome.setAdapter(myAdapter);
+        vpHome.setAdapter(profileAdapter);
         tlHometabs.setupWithViewPager(vpHome);
 //        recyclerTabLayout.setUpWithViewPager(vpHome);
 

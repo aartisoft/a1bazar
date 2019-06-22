@@ -49,7 +49,11 @@ public final class AppConstants {
     public static final String PRODUCT_DESCRIPTION = "description";
     public static final String PRODUCT_VIDEO_URL = "videoUrl";
     public static final String PRODUCT_PRICE = "price";
+    public static final String PREF_FCM_TOKEN = "pref_fcm_token";
+    public static final String PREF_USER_ID = "pref_user_id";
 
+    public static final String RESOURCE_URL = "resourceUrl";
+    public static final String DATA = "data";
     private AppConstants() {
         // This utility class is not publicly instantiable
     }

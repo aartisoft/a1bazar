@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.widget.LinearLayout;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
@@ -14,6 +13,9 @@ import com.pratilipi.hackathon.unbranded.R;
 import com.pratilipi.hackathon.unbranded.base.BaseActivity;
 import com.pratilipi.hackathon.unbranded.eventBus.BottomNavigationEvent;
 import com.pratilipi.hackathon.unbranded.home.fragment.HomeFragmentViewPagerAdapter;
+import com.pratilipi.hackathon.unbranded.home.fragment.NavCreateFragment;
+import com.pratilipi.hackathon.unbranded.home.fragment.NavProfileFragment;
+import com.pratilipi.hackathon.unbranded.utils.NotificationChannelHelper;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -96,6 +98,24 @@ public class HomeActivity extends BaseActivity {
                 //adapter.setCurrentFragment(position);
                 viewPager.setCurrentItem(position);
 
+                try {
+                    if (position == 2) {
+                        Fragment fragment = adapter.getItem(position);
+                        if (fragment instanceof NavProfileFragment) {
+                            ((NavProfileFragment) fragment).onPageRefresh();
+                        }
+
+                    }else if (position == 1) {
+                        Fragment fragment = adapter.getItem(position);
+                        if (fragment instanceof NavCreateFragment) {
+                            ((NavCreateFragment) fragment).onPageRefresh();
+                        }
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
 
                 return true;
             }
@@ -107,6 +127,11 @@ public class HomeActivity extends BaseActivity {
 
 //        currentFragment = adapter.getCurrentFragment();
 
+        try {
+            NotificationChannelHelper.createChannels(getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -134,6 +159,7 @@ public class HomeActivity extends BaseActivity {
         super.onStart();
         EventBus.getDefault().register(this);
     }
+
     @Override
     protected void onStop() {
         EventBus.getDefault().unregister(this);

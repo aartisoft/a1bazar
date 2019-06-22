@@ -29,7 +29,9 @@ import com.pratilipi.hackathon.unbranded.home.adapter.ProfilePagerTabsAdapter;
 import com.pratilipi.hackathon.unbranded.network.ApiEndPoint;
 import com.pratilipi.hackathon.unbranded.network.model.User;
 import com.pratilipi.hackathon.unbranded.network.model.UserProduct;
+import com.pratilipi.hackathon.unbranded.profile.ProfileProductsFragment;
 import com.pratilipi.hackathon.unbranded.rxjava.AppSchedulerProvider;
+import com.pratilipi.hackathon.unbranded.utils.AppUtils;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 
 import java.util.Locale;
@@ -65,8 +67,8 @@ public class NavProfileFragment extends Fragment {
     @BindView(R.id.fragment_container)
     FrameLayout fragmentContainer;
     String titles[] = {"My Products", "My Followers"};
+    ProfilePagerTabsAdapter profileAdapter;
     private CompositeDisposable mCompositeDisposable;
-
     private FirebaseAuth mAuth;
 
     public static NavProfileFragment newInstance(int index) {
@@ -86,9 +88,9 @@ public class NavProfileFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
 
         mCompositeDisposable = new CompositeDisposable();
-        ProfilePagerTabsAdapter myAdapter = new ProfilePagerTabsAdapter(getChildFragmentManager(), getActivity(), titles);
+        profileAdapter = new ProfilePagerTabsAdapter(getChildFragmentManager(), getActivity(), titles);
         vpProfile.setOffscreenPageLimit(3);
-        vpProfile.setAdapter(myAdapter);
+        vpProfile.setAdapter(profileAdapter);
         tlTabs.setupWithViewPager(vpProfile);
 //        recyclerTabLayout.setUpWithViewPager(vpHome);
 
@@ -157,7 +159,7 @@ public class NavProfileFragment extends Fragment {
         });
 
         try {
-            getUserDetailsServer("3");
+            getUserDetailsServer(AppUtils.getUserId(getContext()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -235,7 +237,7 @@ public class NavProfileFragment extends Fragment {
     private Observable<UserProduct> getUserDsta(String userId) {
         return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_USER)
 //                .addHeaders("user-Id", "3")
-                .addQueryParameter("id", userId)
+                .addQueryParameter("id", AppUtils.getUserId(getContext()))
                 .build()
                 .getObjectObservable(UserProduct.class);
     }
@@ -246,6 +248,28 @@ public class NavProfileFragment extends Fragment {
         super.onDestroyView();
         mCompositeDisposable.dispose();
         unbinder.unbind();
+    }
+
+    public void onPageRefresh() {
+        if (profileAdapter != null) {
+            try {
+
+                Fragment fragment = profileAdapter.getItem(0);
+                if (fragment instanceof ProfileProductsFragment) {
+                    ((ProfileProductsFragment) fragment).onPageRefresh();
+                }
+                try {
+                    getUserDetailsServer(AppUtils.getUserId(getContext()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 }
 

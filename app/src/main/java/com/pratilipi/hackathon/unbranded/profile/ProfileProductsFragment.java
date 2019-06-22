@@ -26,6 +26,7 @@ import com.pratilipi.hackathon.unbranded.network.model.Product;
 import com.pratilipi.hackathon.unbranded.network.model.User;
 import com.pratilipi.hackathon.unbranded.network.model.UserProduct;
 import com.pratilipi.hackathon.unbranded.rxjava.AppSchedulerProvider;
+import com.pratilipi.hackathon.unbranded.utils.AppUtils;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 
 import butterknife.BindView;
@@ -108,7 +109,7 @@ public class ProfileProductsFragment extends Fragment {
 
     private Observable<UserProduct> getHomePageContent() {
         return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_USER_PRODUCTS)
-                .addHeaders("user-Id", "3")
+                .addHeaders("user-Id", AppUtils.getUserId(getContext()))
                 .build()
                 .getObjectObservable(UserProduct.class);
     }
@@ -127,27 +128,28 @@ public class ProfileProductsFragment extends Fragment {
             }
 */
 
-        TrendingProductAdapter adapter = new TrendingProductAdapter(products.getProductList(), new TrendingRecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position, Content model) {
+        TrendingProductAdapter adapter = new TrendingProductAdapter(products.getProductList(),
+                new TrendingRecyclerViewAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position, Content model) {
 
-            }
+                    }
 
-            @Override
-            public void onItemClick(View view, int position, User model) {
+                    @Override
+                    public void onItemClick(View view, int position, User model) {
 
-            }
+                    }
 
-            @Override
-            public void onItemClick(View view, int position, Product model) {
+                    @Override
+                    public void onItemClick(View view, int position, Product model) {
 
-            }
+                    }
 
-            @Override
-            public void onItemClick(View view, int position, Datum model) {
+                    @Override
+                    public void onItemClick(View view, int position, Datum model) {
 
-            }
-        });
+                    }
+                });
         productRecyclerView.setAdapter(adapter);
 
 
@@ -209,5 +211,13 @@ public class ProfileProductsFragment extends Fragment {
         super.onDestroyView();
         mCompositeDisposable.dispose();
         unbinder.unbind();
+    }
+
+    public void onPageRefresh() {
+        try {
+            getDataProductListFromServer();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

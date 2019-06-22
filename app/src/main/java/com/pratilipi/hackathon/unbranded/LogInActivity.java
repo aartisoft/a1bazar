@@ -31,6 +31,7 @@ import com.pratilipi.hackathon.unbranded.home.HomeActivity;
 import com.pratilipi.hackathon.unbranded.network.ApiEndPoint;
 import com.pratilipi.hackathon.unbranded.network.model.UserProduct;
 import com.pratilipi.hackathon.unbranded.rxjava.AppSchedulerProvider;
+import com.pratilipi.hackathon.unbranded.utils.AppUtils;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 
 import java.util.HashMap;
@@ -184,14 +185,21 @@ public class LogInActivity extends AppCompatActivity {
                 String fcmToken = instanceIdResult.getToken();
                 Log.d(TAG, "onComplete: fcmToken" + fcmToken);
 
+                AppUtils.setFCMToken(getApplicationContext(), fcmToken);
+
                 new CompositeDisposable().add(postUserData(user, fcmToken)
                         .subscribeOn(new AppSchedulerProvider().io())
                         .observeOn(new AppSchedulerProvider().ui())
                         .subscribe(new Consumer<UserProduct>() {
                             @Override
                             public void accept(UserProduct userProduct) throws Exception {
-                                if (userProduct != null) {
-                                    Log.d(TAG, "accept: " + user.getEmail());
+                                try {
+                                    if (userProduct != null) {
+                                        Log.d(TAG, "accept: " + user.getEmail());
+                                        AppUtils.setUserId(getApplicationContext(), String.valueOf(userProduct.getUserList().get(0).getId()));
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
                                 }
                             }
                         }, new Consumer<Throwable>() {
