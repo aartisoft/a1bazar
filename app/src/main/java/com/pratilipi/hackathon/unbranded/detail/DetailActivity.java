@@ -59,10 +59,12 @@ import com.google.android.exoplayer2.util.Util;
 import com.google.android.exoplayer2.video.VideoRendererEventListener;
 import com.pratilipi.hackathon.unbranded.R;
 import com.pratilipi.hackathon.unbranded.network.model.Product;
+import com.pratilipi.hackathon.unbranded.order.OrderActivity;
 import com.pratilipi.hackathon.unbranded.utils.AppConstants;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -338,6 +340,24 @@ public class DetailActivity
             }
         });
 
+        productBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    if (productQty != null) {
+                        int qty = Integer.parseInt(productQty.getText().toString());
+                        mProduct.setPrice(mProduct.getPrice() * qty);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
+                intent.putExtra(AppConstants.EXTRA_PRODUCT, (Serializable) mProduct);
+                startActivityForResult(intent, AppConstants.REQUEST_CODE_ORDER);
+            }
+        });
+
         productQtyMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -550,6 +570,12 @@ public class DetailActivity
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == AppConstants.REQUEST_CODE_ORDER) {
+            if (data.getBooleanExtra(AppConstants.ORDER_PLACED, false)) {
+                onBackPressed();
+                return;
+            }
+        }
         if (requestCode != PERMISSION_CODE) {
             Log.e(TAG, "Unknown request code: " + requestCode);
             return;

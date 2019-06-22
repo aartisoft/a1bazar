@@ -1,125 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_container"
+    android:id="@+id/nested_scroll_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/img_sign_out"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="end"
-        android:padding="8dp"
-        app:srcCompat="@drawable/ic_sign_out_option" />
+    android:layout_height="match_parent"
+    >
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/action_bar_margin">
-
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/img_user"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:id="@+id/img_sign_out"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/ic_def_user_circle_128" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/img_user"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/user_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:maxLines="2"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="User Name" />
-
-            <TextView
-                android:id="@+id/user_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:maxLines="2"
-                android:textColor="@color/trans_black_65"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                tools:text="User Name" />
+            android:layout_gravity="end"
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_sign_out_option" />
 
 
-            <TextView
-                android:id="@+id/user_followers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:maxLines="2"
-                android:textColor="@color/red_dark2"
-                android:textSize="14sp"
-                android:textStyle="normal"
-                tools:text="User Name" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/action_bar_margin">
 
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/img_user"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/ic_def_user_circle_128" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/action_bar_margin"
+                android:layout_below="@+id/img_user"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tl_tabs"
+                <TextView
+                    android:id="@+id/user_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:background="@color/white"
-                    android:elevation="6dp"
-                    android:fitsSystemWindows="true"
-                    android:minHeight="50dp"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                    app:tabBackground="@color/white"
-                    app:tabGravity="fill"
-                    app:tabMaxWidth="0dp"
-                    app:tabMode="fixed"
-                    app:tabSelectedTextColor="@color/colorAccent"
-                    app:tabTextAppearance="@style/TextStyle.Normal.Bold"
-                    app:tabTextColor="@color/colorPrimaryDark" />
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="User Name" />
 
-                <View
-                    android:id="@+id/toolbar_shadow"
+                <TextView
+                    android:id="@+id/user_email"
                     android:layout_width="match_parent"
-                    android:layout_height="4dp"
-                    android:background="@drawable/toolbar_dropshadow" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:textColor="@color/trans_black_65"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="User Name" />
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/vp_profile"
+
+                <TextView
+                    android:id="@+id/user_followers"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:textColor="@color/red_dark2"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    tools:text="User Name" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:background="@color/green_500"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/product_rating"
+                        style="@style/TextStyle.Small.Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="6dp"
+                        android:maxLength="3"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:text="4.8"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="6dp"
+                        android:padding="1dp"
+                        android:tint="@color/white"
+                        app:srcCompat="@drawable/ic_star_white_24" />
+
+
+                    <TextView
+                        android:id="@+id/product_sold_count"
+                        style="@style/TextStyle.Small.Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="43 sold"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/action_bar_margin"
+                    android:orientation="vertical">
+
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
 
-        </LinearLayout>
+        </RelativeLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tl_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/white"
+            android:elevation="6dp"
+            android:fitsSystemWindows="true"
+            android:minHeight="50dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:tabBackground="@color/white"
+            app:tabGravity="fill"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/colorAccent"
+            app:tabTextAppearance="@style/TextStyle.Normal.Bold"
+            app:tabTextColor="@color/colorPrimaryDark" />
+
+        <View
+            android:id="@+id/toolbar_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@drawable/toolbar_dropshadow" />
 
 
-    </RelativeLayout>
 
-</FrameLayout>
+        <com.pratilipi.hackathon.unbranded.utils.WrapContentHeightViewPager
+            android:id="@+id/vp_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

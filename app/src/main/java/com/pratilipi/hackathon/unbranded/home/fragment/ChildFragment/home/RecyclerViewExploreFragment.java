@@ -34,11 +34,11 @@ import java.util.ArrayList;
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
 
-public class RecyclerViewHomeFragment extends BaseFragment {
+public class RecyclerViewExploreFragment extends BaseFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String TAG = RecyclerViewHomeFragment.class.getSimpleName();
+    private static final String TAG = RecyclerViewExploreFragment.class.getSimpleName();
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -49,14 +49,7 @@ public class RecyclerViewHomeFragment extends BaseFragment {
 
     private RecyclerView recyclerView;
 
-    // @BindView(R.id.recycler_view)
-    // RecyclerView recyclerView;
 
-
-    // @BindView(R.id.swipe_refresh_recycler_list)
-    // SwipeRefreshLayout swipeRefreshRecyclerList;
-
-    //    private SwipeRefreshLayout swipeRefreshRecyclerList;
     private TrendingRecyclerViewAdapter mAdapter;
     private RecyclerViewScrollListener scrollListener;
 
@@ -65,7 +58,7 @@ public class RecyclerViewHomeFragment extends BaseFragment {
 
     @SuppressLint("ValidFragment")
 
-    public RecyclerViewHomeFragment() {
+    public RecyclerViewExploreFragment() {
         // Required empty public constructor
     }
 
@@ -78,8 +71,8 @@ public class RecyclerViewHomeFragment extends BaseFragment {
      * @return A new instance of fragment RecyclerViewHomeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RecyclerViewHomeFragment newInstance(String param1, String param2) {
-        RecyclerViewHomeFragment fragment = new RecyclerViewHomeFragment();
+    public static RecyclerViewExploreFragment newInstance(String param1, String param2) {
+        RecyclerViewExploreFragment fragment = new RecyclerViewExploreFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -87,8 +80,8 @@ public class RecyclerViewHomeFragment extends BaseFragment {
         return fragment;
     }
 
-    public static RecyclerViewHomeFragment newInstance() {
-        RecyclerViewHomeFragment fragment = new RecyclerViewHomeFragment();
+    public static RecyclerViewExploreFragment newInstance() {
+        RecyclerViewExploreFragment fragment = new RecyclerViewExploreFragment();
         return fragment;
     }
 
@@ -202,44 +195,44 @@ public class RecyclerViewHomeFragment extends BaseFragment {
 
     private void setAdapter(Trending homePageContent) {
 
-        mAdapter = new TrendingRecyclerViewAdapter(getActivity(), (ArrayList<Data>) homePageContent.getData(), "Header", "Footer",
-                true, new TrendingRecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position, Content model) {
+        mAdapter = new TrendingRecyclerViewAdapter(getActivity(), (ArrayList<Data>) homePageContent.getData(), "Header", "Footer",false,
+                new TrendingRecyclerViewAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position, Content model) {
 
-            }
+                    }
 
-            @Override
-            public void onItemClick(View view, int position, User model) {
-                try {
-                    Intent intent = new Intent(getActivity(), UserProfileActivity.class);
-                    intent.putExtra(AppConstants.EXTRA_USER, (Serializable) model);
-                    startActivity(intent);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                    @Override
+                    public void onItemClick(View view, int position, User model) {
+                        try {
+                            Intent intent = new Intent(getActivity(), UserProfileActivity.class);
+                            intent.putExtra(AppConstants.EXTRA_USER, (Serializable) model);
+                            startActivity(intent);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
 
-            }
+                    }
 
-            @Override
-            public void onItemClick(View view, int position, Product model) {
+                    @Override
+                    public void onItemClick(View view, int position, Product model) {
 
-                try {
-                    Intent intent = new Intent(getActivity(), DetailActivity.class);
-                    intent.putExtra(AppConstants.EXTRA_PRODUCT, (Serializable) model);
-                    startActivity(intent);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                        try {
+                            Intent intent = new Intent(getActivity(), DetailActivity.class);
+                            intent.putExtra(AppConstants.EXTRA_PRODUCT, (Serializable) model);
+                            startActivity(intent);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
 
-            }
+                    }
 
-            @Override
-            public void onItemClick(View view, int position, Datum model) {
+                    @Override
+                    public void onItemClick(View view, int position, Datum model) {
 
-            }
-        });
+                    }
+                });
 //        mAdapter = new RecyclerViewAdapter(getActivity(), modelList, "Header", "Footer");
 
 
@@ -263,23 +256,6 @@ public class RecyclerViewHomeFragment extends BaseFragment {
             }
         };
         recyclerView.addOnScrollListener(scrollListener);
-          /*
-             Note: The below two methods should be used wisely to handle the pagination enable and disable states based on the use case.
-                     1. scrollListener.disableScrollListener(); - Should be called to disable the scroll state.
-                     2. scrollListener.enableScrollListener(); - Should be called to enable the scroll state.
-          */
-
-
-//        mAdapter.SetOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position, Datum model) {
-//                Log.d(TAG, "onItemClick: " + position) ;
-//                //handle item click events here
-//                Toast.makeText(getActivity(), "Hey " + model.getHeader(), Toast.LENGTH_SHORT).show();
-//
-//
-//            }
-//        });
 
 
         mAdapter.SetOnHeaderClickListener(new TrendingRecyclerViewAdapter.OnHeaderClickListener() {
@@ -304,90 +280,5 @@ public class RecyclerViewHomeFragment extends BaseFragment {
 
 
     }
-
-/*
-
-    private void setAdapter(Trending homePageContent) {
-
-        mAdapter = new RecyclerViewAdapter(getActivity(), (ArrayList<Data>) homePageContent.getData(), "Header", "Footer", new RecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position, Content model) {
-                Log.d(TAG, "Content onItemClick: " + position);
-                startActivity(new Intent(getActivity(), DetailActivity.class));
-            }
-
-            @Override
-            public void onItemClick(View view, int position, Datum model) {
-                Log.d(TAG, "Datum onItemClick: " + position);
-            }
-        });
-//        mAdapter = new RecyclerViewAdapter(getActivity(), modelList, "Header", "Footer");
-
-
-        recyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-
-
-        recyclerView.setAdapter(mAdapter);
-
-
-        scrollListener = new RecyclerViewScrollListener() {
-
-            public void onEndOfScrollReached(RecyclerView rv) {
-
-//                Toast.makeText(getActivity(), "End of the RecyclerView reached. Do your pagination stuff here", Toast.LENGTH_SHORT).show();
-
-                scrollListener.disableScrollListener();
-            }
-        };
-        recyclerView.addOnScrollListener(scrollListener);
-          */
-/*
-             Note: The below two methods should be used wisely to handle the pagination enable and disable states based on the use case.
-                     1. scrollListener.disableScrollListener(); - Should be called to disable the scroll state.
-                     2. scrollListener.enableScrollListener(); - Should be called to enable the scroll state.
-          *//*
-
-
-
-//        mAdapter.SetOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position, Datum model) {
-//                Log.d(TAG, "onItemClick: " + position) ;
-//                //handle item click events here
-//                Toast.makeText(getActivity(), "Hey " + model.getHeader(), Toast.LENGTH_SHORT).show();
-//
-//
-//            }
-//        });
-
-
-        mAdapter.SetOnHeaderClickListener(new RecyclerViewAdapter.OnHeaderClickListener() {
-            @Override
-            public void onHeaderClick(View view, String headerTitle) {
-
-                //handle item click events here
-                Toast.makeText(getActivity(), "Hey I am a header", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        mAdapter.SetOnFooterClickListener(new RecyclerViewAdapter.OnFooterClickListener() {
-            @Override
-            public void onFooterClick(View view, String footerTitle) {
-
-                //handle item click events here
-                Toast.makeText(getActivity(), "Hey I am a footer", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
-    }
-
-*/
 
 }

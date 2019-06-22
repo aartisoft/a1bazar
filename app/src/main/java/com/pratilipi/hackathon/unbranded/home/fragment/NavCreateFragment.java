@@ -172,14 +172,16 @@ public class NavCreateFragment extends Fragment implements VideoRendererEventLis
                 startRecordingActivity();
             }
         });
-        btnCamera.playAnimation();
-
         productUploadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createProduct();
             }
         });
+
+        btnCamera.playAnimation();
+
+
 
 //        initPlayer("");
         return view;
@@ -618,8 +620,8 @@ public class NavCreateFragment extends Fragment implements VideoRendererEventLis
 
                                     String ref = storageReference.getName();
                                     Log.e("TAG:", "the ref is: " + ref);
-//                                    initPlayer(url);
                                     showProductForm(url);
+                                    initPlayer(url);
                                     progressDialog.dismiss();
                                 }
                             });

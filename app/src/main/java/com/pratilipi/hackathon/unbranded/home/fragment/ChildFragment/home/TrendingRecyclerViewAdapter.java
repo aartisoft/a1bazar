@@ -62,13 +62,15 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     private ArrayList<Data> dataList;
     private OnItemClickListener mItemClickListener;
     private Runnable Update;
+    private boolean isTrending;
 
 
-    public TrendingRecyclerViewAdapter(Context context, ArrayList<Data> data, String headerTitle, String footerTitle, OnItemClickListener mItemClickListener) {
+    public TrendingRecyclerViewAdapter(Context context, ArrayList<Data> data, String headerTitle, String footerTitle, boolean isTrending, OnItemClickListener mItemClickListener) {
         this.mContext = context;
         this.dataList = data;
         this.mHeaderTitle = headerTitle;
         this.mFooterTitle = footerTitle;
+        this.isTrending = isTrending;
         this.mItemClickListener = mItemClickListener;
     }
 
@@ -393,7 +395,7 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
 
 
     private boolean isPositionHeader(int position) {
-        return position == 0;
+        return isTrending && position == 0;
     }
 
     private boolean isPositionFooter(int position) {
@@ -404,7 +406,10 @@ public class TrendingRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVi
     @Override
     public int getItemCount() {
 
-        return dataList.size() + 2;
+        if (isTrending)
+            return dataList.size() + 2;
+        else
+            return dataList.size() + 1;
     }
 
     public void SetOnItemClickListener(final OnItemClickListener mItemClickListener) {

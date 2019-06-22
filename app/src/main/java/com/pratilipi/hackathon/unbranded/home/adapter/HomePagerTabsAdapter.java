@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.pratilipi.hackathon.unbranded.home.fragment.ChildFragment.ChildFragmentHomeForyou;
 import com.pratilipi.hackathon.unbranded.home.fragment.ChildFragment.home.ChildFragmentHome;
+import com.pratilipi.hackathon.unbranded.home.fragment.ChildFragment.home.RecyclerViewExploreFragment;
 import com.pratilipi.hackathon.unbranded.home.fragment.ChildFragment.home.RecyclerViewHomeFragment;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class HomePagerTabsAdapter extends FragmentStatePagerAdapter implements V
         this.titles = titles;
         fragments.clear();
         fragments.add(RecyclerViewHomeFragment.newInstance());
-        fragments.add(ChildFragmentHome.newInstance(0));
+        fragments.add(RecyclerViewExploreFragment.newInstance());
 //        fragments.add(ChildFragmentHomeList.newInstance(1));
 //        fragments.add(ChildFragmentHomeForyou.newInstance(2));
 

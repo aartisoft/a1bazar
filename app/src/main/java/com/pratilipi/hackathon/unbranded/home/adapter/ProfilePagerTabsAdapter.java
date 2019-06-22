@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.pratilipi.hackathon.unbranded.home.fragment.ChildFragment.home.ChildFragmentHome;
 import com.pratilipi.hackathon.unbranded.home.fragment.ChildFragment.home.RecyclerViewHomeFragment;
+import com.pratilipi.hackathon.unbranded.network.model.User;
 import com.pratilipi.hackathon.unbranded.profile.ProfileProductsFragment;
 
 import java.util.ArrayList;
@@ -27,14 +28,16 @@ public class ProfilePagerTabsAdapter extends FragmentStatePagerAdapter implement
 
     private ArrayList<Fragment> fragments = new ArrayList<>();
     private Fragment currentFragment;
+    private String mUserId;
 
     //Constructor to the class
-    public ProfilePagerTabsAdapter(FragmentManager fm, Activity activity, String titles[]) {
+    public ProfilePagerTabsAdapter(FragmentManager fm, Activity activity, String[] titles, String mUserId) {
         super(fm);
         this.activity = activity;
         this.titles = titles;
+        this.mUserId = mUserId;
         fragments.clear();
-        fragments.add(ProfileProductsFragment.newInstance());
+        fragments.add(ProfileProductsFragment.newInstance(mUserId));
         fragments.add(ChildFragmentHome.newInstance(0));
 //        fragments.add(ChildFragmentHomeList.newInstance(1));
 //        fragments.add(ChildFragmentHomeForyou.newInstance(2));

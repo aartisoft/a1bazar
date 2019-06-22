@@ -17,6 +17,7 @@ package com.pratilipi.hackathon.unbranded.utils;
 public final class AppConstants {
     public static final int REQUEST_PERMISSION_STORAGE = 3;
     public static final int REQUEST_CODE_RECORDER = 112;
+    public static final int REQUEST_CODE_ORDER = 116;
 
     public static final String STATUS_CODE_SUCCESS = "success";
     public static final String STATUS_CODE_FAILED = "failed";
@@ -40,9 +41,10 @@ public final class AppConstants {
     public static final String USER_ID = "User-Id";
     public static final String URL = "url";
 
-    public static final String EXTRA_IMAGE_PATH= "EXTRA_IMAGE_PATH";
-    public static final String EXTRA_VID_PATH= "EXTRA_VID_PATH";
+    public static final String EXTRA_IMAGE_PATH = "EXTRA_IMAGE_PATH";
+    public static final String EXTRA_VID_PATH = "EXTRA_VID_PATH";
     public static final String EXTRA_PRODUCT = "EXTRA_PRODUCT";
+    public static final String EXTRA_USER = "EXTRA_USER";
 
     public static final String PRODUCT_NAME = "name";
     public static final String PRODUCT_ID = "id";
@@ -54,6 +56,8 @@ public final class AppConstants {
 
     public static final String RESOURCE_URL = "resourceUrl";
     public static final String DATA = "data";
+    public static final String ORDER_PLACED = "ORDER_PLACED";
+
     private AppConstants() {
         // This utility class is not publicly instantiable
     }

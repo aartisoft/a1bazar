@@ -26,7 +26,7 @@ import com.pratilipi.hackathon.unbranded.network.model.Product;
 import com.pratilipi.hackathon.unbranded.network.model.User;
 import com.pratilipi.hackathon.unbranded.network.model.UserProduct;
 import com.pratilipi.hackathon.unbranded.rxjava.AppSchedulerProvider;
-import com.pratilipi.hackathon.unbranded.utils.AppUtils;
+import com.pratilipi.hackathon.unbranded.utils.AppConstants;
 import com.rx2androidnetworking.Rx2AndroidNetworking;
 
 import butterknife.BindView;
@@ -54,11 +54,15 @@ public class ProfileProductsFragment extends Fragment {
 
     /**
      * Create a new instance of the fragment
+     *
+     * @param mUserId
      */
-    public static ProfileProductsFragment newInstance() {
+    private String mUserId;
+
+    public static ProfileProductsFragment newInstance(String mUserId) {
         ProfileProductsFragment fragment = new ProfileProductsFragment();
         Bundle b = new Bundle();
-//        b.putInt("index", index);
+        b.putString(AppConstants.EXTRA_USER, mUserId);
         fragment.setArguments(b);
         return fragment;
     }
@@ -71,15 +75,18 @@ public class ProfileProductsFragment extends Fragment {
 //        initDemoList(view);
         unbinder = ButterKnife.bind(this, view);
 
+        if (getArguments() != null)
+            mUserId = getArguments().getString(AppConstants.EXTRA_USER);
+
         mCompositeDisposable = new CompositeDisposable();
 
-        getDataProductListFromServer();
+        getDataProductListFromServer(mUserId);
         return view;
 
     }
 
-    private void getDataProductListFromServer() {
-        mCompositeDisposable.add(getHomePageContent()
+    private void getDataProductListFromServer(String userId) {
+        mCompositeDisposable.add(getUserProudcts(userId)
                 .subscribeOn(new AppSchedulerProvider().io())
                 .observeOn(new AppSchedulerProvider().ui())
                 .subscribe(new Consumer<UserProduct>() {
@@ -107,9 +114,9 @@ public class ProfileProductsFragment extends Fragment {
     }
 
 
-    private Observable<UserProduct> getHomePageContent() {
+    private Observable<UserProduct> getUserProudcts(String userId) {
         return Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_USER_PRODUCTS)
-                .addHeaders("user-Id", AppUtils.getUserId(getContext()))
+                .addHeaders("user-Id", userId)
                 .build()
                 .getObjectObservable(UserProduct.class);
     }
@@ -215,7 +222,7 @@ public class ProfileProductsFragment extends Fragment {
 
     public void onPageRefresh() {
         try {
-            getDataProductListFromServer();
+            getDataProductListFromServer(mUserId);
         } catch (Exception e) {
             e.printStackTrace();
         }
